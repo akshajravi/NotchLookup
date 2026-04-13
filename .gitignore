@@ -10,3 +10,8 @@ NotchLookup.app/
 
 # Claude Code local settings & memory
 .claude/
+
+# Personal working docs
+claude.md
+plan.md
+progress.md
