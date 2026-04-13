@@ -21,39 +21,6 @@ Press `Esc` or click outside to dismiss.
 - Xcode (or just the Swift toolchain, 5.9+)
 - An Anthropic API key — [get one here](https://console.anthropic.com/)
 
-## Build
-
-This is a Swift Package executable assembled into a `.app` bundle by `build.sh`. No Xcode project, no GUI clicks — just the terminal.
-
-**One-time setup:** create a self-signed code-signing cert so Keychain ACLs persist across rebuilds.
-
-1. Open **Keychain Access**
-2. Menu bar → **Keychain Access** → **Certificate Assistant** → **Create a Certificate…**
-3. Name: `NotchLookup Dev`, Identity Type: `Self Signed Root`, Certificate Type: `Code Signing`
-4. Click **Create** → **Continue** → **Done**
-
-Then build and run:
-
-```bash
-./build.sh
-open NotchLookup.app
-```
-
-## First-run setup
-
-1. macOS will prompt for **Accessibility** permission — grant it (required so the app can synthesize ⌘C to read selected text from other apps)
-2. Click the 🔍 icon in the menu bar → **Settings…**
-3. Paste your Anthropic API key, click **Save**
-
-The key is stored in the macOS Keychain. You only need to do this once.
-
-## Tests
-
-```bash
-swift test
-```
-
-39 tests across `KeychainManager`, `TextGrabber`, `NotchPositioner`, and `AnthropicClient` (SSE parser mocked via `URLProtocol` — no API key or network needed).
 
 ## Tech stack
 
@@ -73,9 +40,3 @@ Sources/
 Tests/NotchLookupTests/ # Swift Testing suite
 build.sh                # Builds the executable and assembles NotchLookup.app
 ```
-
-## Known limitations
-
-- Not intended for App Store distribution — uses non-sandboxed Keychain access and synthetic keyboard events
-- Responses are capped at 150 tokens to keep the notch UI tiny
-- No scrolling — if a response overflows, it's clipped
