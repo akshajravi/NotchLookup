@@ -1,0 +1,12 @@
+# Swift Package Manager build cache
+.build/
+.swiftpm/
+
+# Compiled app bundle (produced by build.sh)
+NotchLookup.app/
+
+# macOS cruft
+.DS_Store
+
+# Claude Code local settings & memory
+.claude/
